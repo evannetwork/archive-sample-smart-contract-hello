@@ -37,14 +37,14 @@ contract HelloWorld {
   // this function concatenates strings, which can be rather expensive
   // so whenever possible such utility functionality should be done outside the chain
   // the view modifier indicates that state is read, but not changed
-  function hello(string salut) external view returns (string greeting) {
+  function hello(string salut) external view returns (bytes) {
     bytes memory tmp0 = bytes(prompt);
     bytes memory tmp1 = bytes(salut);
-    greeting =  new string(tmp0.length + tmp1.length);
+    string memory greeting =  new string(tmp0.length + tmp1.length);
     bytes memory buffer = bytes(greeting);
     uint k = 0;
     for(uint i = 0; i < tmp0.length;) buffer[k++] = tmp0[i++];
     for(i = 0; i < tmp1.length;) buffer[k++] = tmp1[i++];
-    return greeting;
+    return buffer;
   }
 }
